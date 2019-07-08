@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebIClips.Models.Pracas>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .descricao{
+    display: none;
+}
+    .item:hover .descricao{
+    display: block;
+}
+</style>
+<h2>Praças</h2>
+
+
+@{
+       var count = Model.Count();
+        
+}
+<p class="navbar-right">@count REGISTROS</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Praca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sigla)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="item">
+            <td>
+                @Html.DisplayFor(modelItem => item.Praca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sigla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td class="descricao">
+                <a asp-action="Edit" asp-route-id="@item.IdPraca"><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button></a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPraca"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
